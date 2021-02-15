@@ -10,7 +10,6 @@ const inquirer = require('./lib/inquirer');
 const setupMVVM = require('./actions/setup_mvvm');
 const init = require('./actions/init');
 const NumberPrompt = require('inquirer/lib/prompts/number');
-const { combineReducers } = require('@reduxjs/toolkit');
 
 
 console.log(
@@ -33,9 +32,11 @@ async function main()
 
   let action_result = await inquirer.startup();
 
-  if( action_result.action === "init" )
+  if( action_result.action === "Init" )
   {
-    init();
+    let app_name = await inquirer.askForInput("what will be your project name ?");
+
+    init(app_name.input);
   }
   else 
   {
