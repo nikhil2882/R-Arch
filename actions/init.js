@@ -8,7 +8,7 @@ const constants = require("../constants");
 
 module.exports = function(app_name)
 {
-
+  
   const creatingReactAppLoader = loader();
 
   creatingReactAppLoader.text = "Initiating React App ...";
@@ -58,6 +58,12 @@ module.exports = function(app_name)
           creatingReactAppLoader.text = "Dependency installed successfully ...";
 
           creatingReactAppLoader.stop();
+
+          execSync(`cp ./resourses/.eslintrc.js ./${app_name}/.eslintrc.js`);
+          execSync(`cp ./resourses/.prettierrc.js ./${app_name}/.prettierrc.js`);
+          execSync(`cp ./resourses/babel.config.js ./${app_name}/babel.config.js`);
+          execSync(`cp ./resourses/tsconfig.json ./${app_name}/tsconfig.json`);
+          
 
         }
         catch(error)
