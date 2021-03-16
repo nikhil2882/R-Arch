@@ -8,6 +8,7 @@ const constants = require("../constants");
 
 module.exports = function(app_name)
 {
+
   const creatingReactAppLoader = loader();
 
   creatingReactAppLoader.text = "Initiating React App ...";
@@ -17,7 +18,7 @@ module.exports = function(app_name)
   const reactAppCommand = spawn("npx",["create-react-app",app_name]);
  
   reactAppCommand.stdout.on("data", data => {
-    console.log(`${data}`);
+    //console.log(`${data}`);
   });
 
   reactAppCommand.stderr.on("data", data => {
@@ -40,9 +41,8 @@ module.exports = function(app_name)
         //install additional dependecnies 
         creatingReactAppLoader.text = "Switiching Directory ...";
         creatingReactAppLoader.start();
-
-        execSync(`cd ${app_name}`);
-
+        
+  
         // installing additonal dependencies
         const package_manager_to_use = shouldUseYarn() ? "yarn add" : "npm install --save";
 
@@ -53,10 +53,17 @@ module.exports = function(app_name)
           let packages_to_install = constants.modules_to_install_in_fresh_projects
                                     .join(" ");
 
-          execSync(`${package_manager_to_use} ${packages_to_install}`)
+          execSync(`${package_manager_to_use} ${packages_to_install}`, { cwd: `${process.cwd()}/${app_name}` })
+
+          creatingReactAppLoader.text = "Dependency installed successfully ...";
+
+          creatingReactAppLoader.stop();
+
         }
         catch(error)
         {
+          creatingReactAppLoader.stop();
+
           console.log(error);
         }
       }

@@ -46,10 +46,3 @@ async function main()
 
 main();
 
-
-todo
-1. create function should use yarn or npm
-2. install react-router-dom and redux and react-redux
-3. creating basic folders
-4. create route
-5. create model
