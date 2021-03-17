@@ -4,7 +4,6 @@ module.exports = {
     'import/resolver': {
       node: {
           moduleDirectory: ["node_modules", "src/"]
-        },
       },
     },
   },
