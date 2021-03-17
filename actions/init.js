@@ -63,7 +63,7 @@ module.exports = function(app_name)
           execSync(`cp ./resourses/.prettierrc.js ./${app_name}/.prettierrc.js`);
           execSync(`cp ./resourses/jsconfig.json ./${app_name}/jsconfig.json`);
           
-
+          
 
         }
         catch(error)
