@@ -7,7 +7,6 @@ const figlet = require('figlet');
 const files = require('./lib/files');
 const inquirer = require('./lib/inquirer');
 
-const setupMVVM = require('./actions/setup_mvvm');
 const init = require('./actions/init');
 const NumberPrompt = require('inquirer/lib/prompts/number');
 

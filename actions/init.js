@@ -6,9 +6,12 @@ const shouldUseYarn = require("../lib/should_use_yarn");
 
 const constants = require("../constants");
 
+const store = require("./redux_store");
+
 module.exports = function(app_name)
 {
-  
+  const cwd = process.cwd();
+
   const creatingReactAppLoader = loader();
 
   creatingReactAppLoader.text = "Initiating React App ...";
@@ -53,7 +56,7 @@ module.exports = function(app_name)
           let packages_to_install = constants.modules_to_install_in_fresh_projects
                                     .join(" ");
 
-          execSync(`${package_manager_to_use} ${packages_to_install}`, { cwd: `${process.cwd()}/${app_name}` })
+          execSync(`${package_manager_to_use} ${packages_to_install}`, { cwd: `${cwd}/${app_name}` })
 
           creatingReactAppLoader.text = "Dependency installed successfully ...";
 
@@ -63,7 +66,7 @@ module.exports = function(app_name)
           execSync(`cp ./resourses/base_project/.prettierrc.js ./${app_name}/.prettierrc.js`);
           execSync(`cp ./resourses/base_project/jsconfig.json ./${app_name}/jsconfig.json`);
           
-          
+          store.init(`${cwd}/${app_name}`);        
 
         }
         catch(error)
