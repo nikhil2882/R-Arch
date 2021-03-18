@@ -9,5 +9,6 @@ module.exports.modules_to_install_in_fresh_projects = [
   'react-redux', 
   'react-router-dom',
   'redux-thunk',
-  'redux-logger'
+  'redux-logger',
+  'redux-devtools-extension'
 ]
