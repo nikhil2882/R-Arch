@@ -59,9 +59,9 @@ module.exports = function(app_name)
 
           creatingReactAppLoader.stop();
 
-          execSync(`cp ./resourses/.eslintrc.js ./${app_name}/.eslintrc.js`);
-          execSync(`cp ./resourses/.prettierrc.js ./${app_name}/.prettierrc.js`);
-          execSync(`cp ./resourses/jsconfig.json ./${app_name}/jsconfig.json`);
+          execSync(`cp ./resourses/base_project/.eslintrc.js ./${app_name}/.eslintrc.js`);
+          execSync(`cp ./resourses/base_project/.prettierrc.js ./${app_name}/.prettierrc.js`);
+          execSync(`cp ./resourses/base_project/jsconfig.json ./${app_name}/jsconfig.json`);
           
           
 
