@@ -1,4 +1,5 @@
 const { spawn, execSync } = require("child_process");
+const fs = require("fs");
 
 
 const loader = require("../lib/loader");
@@ -62,9 +63,20 @@ module.exports = function(app_name)
 
           creatingReactAppLoader.stop();
 
-          execSync(`cp ./resourses/base_project/.eslintrc.js ./${app_name}/.eslintrc.js`);
-          execSync(`cp ./resourses/base_project/.prettierrc.js ./${app_name}/.prettierrc.js`);
-          execSync(`cp ./resourses/base_project/jsconfig.json ./${app_name}/jsconfig.json`);
+          fs.copyFileSync(
+            `cp ./resourses/base_project/.eslintrc.js`,
+            `./${app_name}/.eslintrc.js`
+          );
+          
+          fs.copyFileSync(
+            `cp ./resourses/base_project/.prettierrc.js`,
+            `./${app_name}/.prettierrc.js`
+          );
+
+          fs.copyFileSync(
+            `cp ./resourses/base_project/jsconfig.json`,
+            `./${app_name}/jsconfig.json`
+          );
           
           store.init(`${cwd}/${app_name}`);        
 

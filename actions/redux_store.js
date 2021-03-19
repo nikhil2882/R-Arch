@@ -11,6 +11,22 @@ module.exports.init = function(target_directory)
     `${process.cwd()}/resourses/redux_store/index.js`, 
     `${target_directory}/src/store/index.js`
   );
-  //execSync(`cp ./resourses/base_project/.eslintrc.js ./${app_name}/.eslintrc.js`);
+
+  //copy reducer.js , this is the place where we gather all the reducers
+  //in app and prepare for combine reducers
+  fs.copyFileSync(
+    `${process.cwd()}/resourses/redux_store/reducers.js`, 
+    `${target_directory}/src/store/reducers.js`
+  );
+
+  //create enhancers directory
+  // this will have all monitoring based functions
+  fs.mkdirSync(`${target_directory}/src/store/enhancers`);
+
+  //copy monitor_reducers.js
+  fs.copyFileSync(
+    `${process.cwd()}/resourses/redux_store/monitor_reducers.js`, 
+    `${target_directory}/src/store/monitor_reducers.js`
+  );
   
 }
