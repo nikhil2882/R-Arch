@@ -1,4 +1,6 @@
 const { spawn, execSync } = require("child_process");
+
+// need to create files related methods in lib/files
 const fs = require("fs");
 
 
@@ -82,7 +84,15 @@ module.exports = function(app_name)
             `./resourses/base_project/serviceWorker.js`,
             `./${app_name}/src/serviceWorker.js`
           );
+          
+          fs.mkdirSync(`${cwd}/${app_name}/src/routes`);
 
+          fs.copyFileSync(
+            `./resourses/base_project/routes/index.js`,
+            `./${app_name}/src/routes/index.js`
+          );
+
+          
           fs.mkdirSync(`${cwd}/${app_name}/src/settings`);
           
           fs.copyFileSync(
