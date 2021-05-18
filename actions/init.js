@@ -64,20 +64,41 @@ module.exports = function(app_name)
           creatingReactAppLoader.stop();
 
           fs.copyFileSync(
-            `cp ./resourses/base_project/.eslintrc.js`,
+            `./resourses/base_project/.eslintrc.js`,
             `./${app_name}/.eslintrc.js`
           );
           
           fs.copyFileSync(
-            `cp ./resourses/base_project/.prettierrc.js`,
+            `./resourses/base_project/.prettierrc.js`,
             `./${app_name}/.prettierrc.js`
           );
 
           fs.copyFileSync(
-            `cp ./resourses/base_project/jsconfig.json`,
+            `./resourses/base_project/jsconfig.json`,
             `./${app_name}/jsconfig.json`
           );
+
+          fs.copyFileSync(
+            `./resourses/base_project/serviceWorker.js`,
+            `./${app_name}/src/serviceWorker.js`
+          );
+
+          fs.mkdirSync(`${cwd}/${app_name}/src/settings`);
           
+          fs.copyFileSync(
+            `./resourses/base_project/settings/style.js`,
+            `./${app_name}/src/settings/style.js`
+          );
+
+          fs.copyFileSync(
+            `./resourses/base_project/settings/main.css`,
+            `./${app_name}/src/settings/main.css`
+          );
+
+          const index_file_data = fs.readFileSync("./resourses/base_project/index.js", "utf8");
+
+          fs.writeFileSync(`./${app_name}/src/index.js`, index_file_data);
+
           store.init(`${cwd}/${app_name}`);        
 
         }

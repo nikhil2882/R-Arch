@@ -1,0 +1,37 @@
+:root {
+  --primarySurfaceColor:#2b4055;
+  --primaryTextColor: #ffffff;
+  --primaryTextShadowColor: rgba(142,172,190,0.8);
+  --primaryBottomShadowColor:#111a22;
+  --primaryTopShadowColor:#456688;
+  --primaryFontFamily:'Times New Roman', Times, serif;
+}
+
+/* Change autocomplete styles in WebKit */
+/* when chrome autofill input it changes style , this will prevent it */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--primaryTextColor);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+a
+{
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* touch highlight disabling */
+body
+{
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}

@@ -1,4 +1,3 @@
-const { execSync } = require("child_process");
 const fs = require("fs");
 
 module.exports.init = function(target_directory)
@@ -26,7 +25,7 @@ module.exports.init = function(target_directory)
   //copy monitor_reducers.js
   fs.copyFileSync(
     `${process.cwd()}/resourses/redux_store/monitor_reducers.js`, 
-    `${target_directory}/src/store/monitor_reducers.js`
+    `${target_directory}/src/store/enhancers/monitor_reducers.js`
   );
   
 }
