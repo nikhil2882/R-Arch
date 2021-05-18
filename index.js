@@ -7,8 +7,11 @@ const figlet = require('figlet');
 const files = require('./lib/files');
 const inquirer = require('./lib/inquirer');
 
+const { startup_choices_values } = require('./constants');
+
 const init = require('./actions/init');
-const NumberPrompt = require('inquirer/lib/prompts/number');
+const createScreen = require('./actions/create_screen');
+
 
 
 console.log(
@@ -31,11 +34,26 @@ async function main()
 
   let action_result = await inquirer.startup();
 
-  if( action_result.action === "Init" )
+  console.log(action_result)
+
+  if( action_result.action === startup_choices_values.init_new_project )
   {
     let app_name = await inquirer.askForInput("what will be your project name ?");
 
     init(app_name.input);
+  }
+  else if( action_result.action === startup_choices_values.create_new_screen)
+  {
+    let screen_name = await inquirer.askForInput("what will be your screen name ?");
+
+    createScreen(screen_name.input);
+  }
+  else if( action_result.action === startup_choices_values.create_route)
+  {
+    let screen_name = await inquirer.askForInput("what will be your route name ?");
+
+    //validate if route name have any space
+    createScreen(screen_name.input);
   }
   else 
   {

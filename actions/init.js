@@ -7,7 +7,7 @@ const fs = require("fs");
 const loader = require("../lib/loader");
 const shouldUseYarn = require("../lib/should_use_yarn");
 
-const constants = require("../constants");
+const { modules_to_install_in_fresh_projects } = require("../constants");
 
 const store = require("./redux_store");
 
@@ -56,7 +56,7 @@ module.exports = function(app_name)
         
         try
         {
-          let packages_to_install = constants.modules_to_install_in_fresh_projects
+          let packages_to_install = modules_to_install_in_fresh_projects
                                     .join(" ");
 
           execSync(`${package_manager_to_use} ${packages_to_install}`, { cwd: `${cwd}/${app_name}` })
