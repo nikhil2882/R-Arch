@@ -85,6 +85,16 @@ module.exports = function(app_name)
             `./${app_name}/src/serviceWorker.js`
           );
           
+          fs.mkdirSync(`${cwd}/${app_name}/src/api`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/containers`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/models`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/view_models`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/views`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/views/atoms`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/views/molecules`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/views/organisms`);
+          
+    
           fs.mkdirSync(`${cwd}/${app_name}/src/routes`);
 
           fs.copyFileSync(
