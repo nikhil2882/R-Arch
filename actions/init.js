@@ -88,11 +88,13 @@ module.exports = function(app_name)
           fs.mkdirSync(`${cwd}/${app_name}/src/api`);
           fs.mkdirSync(`${cwd}/${app_name}/src/containers`);
           fs.mkdirSync(`${cwd}/${app_name}/src/models`);
-          fs.mkdirSync(`${cwd}/${app_name}/src/view_models`);
-          fs.mkdirSync(`${cwd}/${app_name}/src/views`);
-          fs.mkdirSync(`${cwd}/${app_name}/src/views/atoms`);
-          fs.mkdirSync(`${cwd}/${app_name}/src/views/molecules`);
-          fs.mkdirSync(`${cwd}/${app_name}/src/views/organisms`);
+          //fs.mkdirSync(`${cwd}/${app_name}/src/view_models`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/components`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/components/atoms`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/components/molecules`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/components/organisms`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/screens`);
+          fs.mkdirSync(`${cwd}/${app_name}/src/partials`);
           
     
           fs.mkdirSync(`${cwd}/${app_name}/src/routes`);
