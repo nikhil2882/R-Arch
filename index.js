@@ -44,7 +44,7 @@ async function main()
   }
   else if( action_result.action === startup_choices_values.create_new_screen)
   {
-    let screen_name = await inquirer.askForInput("what will be your screen name ?");
+    let screen_name = await inquirer.askForInput("what will be your screen name ? (use camle casing)");
 
     createScreen(screen_name.input);
   }
