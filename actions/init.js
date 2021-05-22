@@ -13,6 +13,7 @@ const store = require("./redux_store");
 
 module.exports = function(app_name)
 {
+ 
   const cwd = process.cwd();
 
   const creatingReactAppLoader = loader();
@@ -65,24 +66,25 @@ module.exports = function(app_name)
 
           creatingReactAppLoader.stop();
 
+
           fs.copyFileSync(
-            `./resourses/base_project/.eslintrc.js`,
-            `./${app_name}/.eslintrc.js`
+            `${__dirname}/../resourses/base_project/.eslintrc.js`,
+            `${cwd}/${app_name}/.eslintrc.js`
           );
           
           fs.copyFileSync(
-            `./resourses/base_project/.prettierrc.js`,
-            `./${app_name}/.prettierrc.js`
+            `${__dirname}/../resourses/base_project/.prettierrc.js`,
+            `${cwd}/${app_name}/.prettierrc.js`
           );
 
           fs.copyFileSync(
-            `./resourses/base_project/jsconfig.json`,
-            `./${app_name}/jsconfig.json`
+            `${__dirname}/../resourses/base_project/jsconfig.json`,
+            `${cwd}/${app_name}/jsconfig.json`
           );
 
           fs.copyFileSync(
-            `./resourses/base_project/serviceWorker.js`,
-            `./${app_name}/src/serviceWorker.js`
+            `${__dirname}/../resourses/base_project/serviceWorker.js`,
+            `${cwd}/${app_name}/src/serviceWorker.js`
           );
           
           fs.mkdirSync(`${cwd}/${app_name}/src/api`);
@@ -100,27 +102,29 @@ module.exports = function(app_name)
           fs.mkdirSync(`${cwd}/${app_name}/src/routes`);
 
           fs.copyFileSync(
-            `./resourses/base_project/routes/index.js`,
-            `./${app_name}/src/routes/index.js`
+            `${__dirname}/../resourses/base_project/routes/index.js`,
+            `${cwd}/${app_name}/src/routes/index.js`
           );
 
           
           fs.mkdirSync(`${cwd}/${app_name}/src/settings`);
           
           fs.copyFileSync(
-            `./resourses/base_project/settings/style.js`,
-            `./${app_name}/src/settings/style.js`
+            `${__dirname}/../resourses/base_project/settings/style.js`,
+            `${cwd}/${app_name}/src/settings/style.js`
           );
 
           fs.copyFileSync(
-            `./resourses/base_project/settings/main.css`,
-            `./${app_name}/src/settings/main.css`
+            `${__dirname}/../resourses/base_project/settings/main.css`,
+            `${cwd}/${app_name}/src/settings/main.css`
           );
 
-          const index_file_data = fs.readFileSync("./resourses/base_project/index.js", "utf8");
+          fs.copyFileSync(
+            `${__dirname}/../resourses/base_project/index.js`,
+            `${cwd}/${app_name}/src/index.js`
+          );
 
-          fs.writeFileSync(`./${app_name}/src/index.js`, index_file_data);
-
+        
           store.init(`${cwd}/${app_name}`);        
 
         }
