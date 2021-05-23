@@ -3,6 +3,7 @@ const chalk = require('chalk');
 
 const insertLastImport = require('../utils/insertLastImport');
 const addSubStringToString = require('../utils/addSubStringToString');
+const capitalizeFirstLetter = require('../utils/capitalizeFirstLetter');
 
 module.exports = function(container_name)
 {
@@ -12,8 +13,9 @@ module.exports = function(container_name)
 
     const route_file = filesMethods.readFileSync(`${current_directory}/src/routes/index.js`);
 
-    let routes_array_strings = addRouteInFile(route_file, container_name);
+    let routes_string = addRouteInFile(route_file, container_name);
 
+    filesMethods.writeFileSync( `${current_directory}/src/routes/index.js` , routes_string);
     
 
   }
@@ -39,7 +41,7 @@ function addRouteInFile(string, container_name)
 
   let route_template = `{
     path:"/${container_name}",
-    component:${container_name},
+    component:${capitalizeFirstLetter(container_name)},
     exact:true,
     icon:null,
     text:${container_name}
@@ -80,21 +82,80 @@ function addRouteInFile(string, container_name)
     check routes/index.js, that should contain a default export of a array`)
   }
 
-  let new_routes_string = addSubStringToString(string, last_occurrence-1, 0, ",");
+  let routes_array = arrayFromString(string);
+
+  let new_routes_string = string;
+
+  if(new_routes_string[last_occurrence-1] === "[")
+  {
+    new_routes_string = addSubStringToString(new_routes_string, last_occurrence, 0, " ");
+    last_occurrence++;
+  }
+
+
+  if(routes_array.length)
+  {    
+    new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, ",");
+    last_occurrence++;
+    new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, "\n");
+    last_occurrence++;
+  }
  
-  last_occurrence++;
-  new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, "\n");
  
-  last_occurrence++;
   // my current vscode tab is for 5 spaces but cant control \t command
   // adding up 5 spaces to maintain formatting
   // this should done by prettier
-  new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, "\t");
+  /* new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, "\t");
+  last_occurrence++; */
 
-
-  last_occurrence++;
   new_routes_string = addSubStringToString(new_routes_string, last_occurrence-1, 0, route_template);
 
+  new_routes_string = insertLastImport(
+    new_routes_string, 
+    `import ${capitalizeFirstLetter(container_name)} from "containers/${container_name}";`
+  )
 
-  console.log(new_routes_string);
+  return new_routes_string;
+}
+
+
+function arrayFromString(string)
+{
+  let starting_point = [];
+  let first_occurrence  = 0;
+
+
+  for( let i=0; i<string.length; i++ )
+  {
+    if(string[i] === "[")
+    {
+      starting_point.push(i);
+
+      if(!first_occurrence)
+      {
+        first_occurrence = i;
+      }
+
+    }
+    else if(string[i] === "]")
+    {
+      if(starting_point.length === 1)
+      {
+        // this is the point to cut
+
+        try
+        {
+          return JSON.parse(string.slice(first_occurrence, i +1 ));
+        }
+        catch(err)
+        {
+          return [{}];
+        }
+      }
+      else
+      {
+        starting_point.pop();
+      }
+    }
+  }
 }
