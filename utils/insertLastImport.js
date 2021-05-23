@@ -20,5 +20,12 @@ module.exports = function(file, data_to_insert)
 
   rows.splice(last_known_index+1, 0 , data_to_insert);
 
+  if(rows[last_known_index+2] !== "")
+  {
+    rows.splice(last_known_index+2, 0 , "\n");
+
+  }
+
+
   return rows.join("\n");
 }
