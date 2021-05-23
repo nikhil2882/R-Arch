@@ -10,36 +10,38 @@ module.exports = function(screen_name)
   {
     let path = `${process.cwd()}/src/screens/${screen_name}`;
 
-    fs.mkdirSync();
-    fs.writeFileSync(getContent(screen_name),`${path}/${screen_name}Screen.js`);
-    fs.writeFileSync("",`${path}/styles.module.css`);
-    fs.writeFileSync(getPackageJsonContent(screen_name),`${path}/package.json`);
+    fs.mkdirSync(path);
+    fs.writeFileSync(`${path}/${screen_name}Screen.js`, getContent(screen_name));
+    fs.writeFileSync(`${path}/styles.module.css`, "");
+    fs.writeFileSync(`${path}/package.json`, getPackageJsonContent(screen_name));
+
   }
   catch(err)
   {
-    console.log(chalk.red(err));
+    console.log(err);
   }
 }
 
 
 function getContent(name)
 {
+  let template =  (
+`import React from 'react'
+
+// Screen Template styles 
+import styles from "./styles.module.css";
+
+
+export default function ${capitalizeFirstLetter(name)}() 
+{
   return (
-    `
-      import React from 'react'
-      
-      // Screen 
-      import styles from "./styles.module.css";
-
-
-      export default function ${capitalizeFirstLetter(name)}() 
-      {
-        return (
-          <div>you are at ${name} screen</div>
-        )
-      }
-    `
+    <div>you are at ${name} screen</div>
   )
+}
+`
+  )
+
+  return template;
 }
 
 
