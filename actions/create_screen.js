@@ -31,11 +31,13 @@ module.exports = function(screen_name)
     if(is_container_exists)
     {
       console.log(chalk.red("Container already exist"));
+      return
     }
 
     if(is_screens_already_exists)
     {
       console.log(chalk.red("Screen already exist"));
+      return
     }
 
     addNewRoute(screen_name);
