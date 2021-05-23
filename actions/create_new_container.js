@@ -10,9 +10,9 @@ module.exports = function(container_name)
   {
     let path = `${process.cwd()}/src/containers/${container_name}`;
 
-    fs.mkdirSync();
-    fs.writeFileSync(getContent(container_name),`${path}/${container_name}Container.js`);
-    fs.writeFileSync(getPackageJsonContent(container_name),`${path}/package.json`);
+    fs.mkdirSync(path);
+    fs.writeFileSync(`${path}/${container_name}Container.js`, getContent(container_name));
+    fs.writeFileSync(`${path}/package.json` , getPackageJsonContent(container_name));
   }
   catch(err)
   {
@@ -24,20 +24,19 @@ module.exports = function(container_name)
 function getContent(container_name)
 {
   return (
-    `
-      import React from 'react'
-      
-      // Screen 
-      import Screen from "screens/${container_name}";
+`import React from 'react'
+  
+  // Screen 
+  import Screen from "screens/${container_name}";
 
 
-      export default function ${capitalizeFirstLetter(container_name)}() 
-      {
-        return (
-          <Screen />
-        )
-      }
-    `
+  export default function ${capitalizeFirstLetter(container_name)}() 
+  {
+    return (
+      <Screen />
+    )
+  }
+`
   )
 }
 

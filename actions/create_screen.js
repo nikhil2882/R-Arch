@@ -6,6 +6,7 @@ const filesMethods = require('../lib/files');
 //actions
 const addNewRoute = require("./add_new_route");
 const addNewScreen = require("./create_new_screen");
+const addNewContainer = require("./create_new_container");
 
 
 module.exports = function(screen_name)
@@ -38,7 +39,8 @@ module.exports = function(screen_name)
     }
 
     addNewRoute(screen_name);
-    addNewScreen(screen_name)
+    addNewScreen(screen_name);
+    addNewContainer(screen_name);
     
   }
   catch (err)
