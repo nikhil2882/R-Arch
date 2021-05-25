@@ -11,6 +11,9 @@ const { startup_choices_values } = require('./constants');
 
 const init = require('./actions/init');
 const createScreen = require('./actions/create_screen');
+const createAtom = require('./actions/create_atom');
+const createMolecule = require('./actions/create_molecule');
+const createOrganism = require('./actions/create_organism');
 
 
 
@@ -44,16 +47,27 @@ async function main()
   }
   else if( action_result.action === startup_choices_values.create_new_screen)
   {
-    let screen_name = await inquirer.askForInput("what will be your screen name ? (use camle casing)");
+    let screen_name = await inquirer.askForInput("what will be your screen name ?");
 
     createScreen(screen_name.input);
   }
-  else if( action_result.action === startup_choices_values.create_route)
+  else if( action_result.action === startup_choices_values.create_new_atom)
   {
-    let screen_name = await inquirer.askForInput("what will be your route name ?");
+    let screen_name = await inquirer.askForInput("what will be your atom name ?");
 
-    //validate if route name have any space
-    createScreen(screen_name.input);
+    createAtom(screen_name.input);
+  }
+  else if( action_result.action === startup_choices_values.create_new_molecule)
+  {
+    let screen_name = await inquirer.askForInput("what will be your molecule name ?");
+
+    createMolecule(screen_name.input);
+  }
+  else if( action_result.action === startup_choices_values.create_new_organism)
+  {
+    let screen_name = await inquirer.askForInput("what will be your organism name ?");
+
+    createOrganism(screen_name.input);
   }
   else 
   {

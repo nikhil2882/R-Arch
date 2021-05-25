@@ -1,7 +1,11 @@
 const startup_choices_values  = {
   init_new_project: "init_new_project",
   create_new_screen: "create_new_screen",
-  create_new_model: "create_new_model"
+  create_new_model: "create_new_model",
+  create_new_atom: "create_new_atom",
+  create_new_molecule: "create_new_molecule",
+  create_new_organism: "create_new_organism",
+
 }
 
 const startup_choices = [
@@ -16,6 +20,18 @@ const startup_choices = [
   {
     name:"Create New Model",
     value:startup_choices_values.create_new_model
+  },
+  {
+    name:"Create New Atom",
+    value:startup_choices_values.create_new_atom
+  },
+  {
+    name:"Create New Molecule",
+    value:startup_choices_values.create_new_molecule
+  },
+  {
+    name:"Create New Organism",
+    value:startup_choices_values.create_new_organism
   }
 ]
 
