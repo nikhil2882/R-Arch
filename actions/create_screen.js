@@ -43,6 +43,7 @@ module.exports = function(screen_name)
     addNewRoute(screen_name);
     addNewScreen(screen_name);
     addNewContainer(screen_name);
+    console.log(chalk.greenBright("Screen added successfully"));
     
   }
   catch (err)
