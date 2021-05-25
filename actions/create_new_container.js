@@ -26,16 +26,16 @@ function getContent(container_name)
   return (
 `import React from 'react'
   
-  // Screen 
-  import Screen from "screens/${container_name}";
+// Screen 
+import Screen from "screens/${container_name}";
 
 
-  export default function ${capitalizeFirstLetter(container_name)}() 
-  {
-    return (
-      <Screen />
-    )
-  }
+export default function ${capitalizeFirstLetter(container_name)}() 
+{
+  return (
+    <Screen />
+  )
+}
 `
   )
 }
