@@ -36,7 +36,7 @@ module.exports = function(name)
 
       fs.mkdirSync(path);
       fs.writeFileSync(`${path}/${name}.js`, getContent(name));
-      fs.writeFileSync(`${path}/styles.module.css`, "");
+      fs.writeFileSync(`${path}/${name}Styles.module.css`, "");
       fs.writeFileSync(`${path}/package.json`, getPackageJsonContent(name));
 
     }
@@ -68,7 +68,7 @@ function getContent(name)
 `import PropTypes from 'prop-types';
 
 // Component styles 
-import styles from "./styles.module.css";
+import styles from "./${name}Styles.module.css";
 
 
 export default function ${capitalizeFirstLetter(name)}(props) 
