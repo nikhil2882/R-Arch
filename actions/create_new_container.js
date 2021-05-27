@@ -24,7 +24,7 @@ module.exports = function(container_name)
 function getContent(container_name)
 {
   return (
-`import React from 'react'
+`import PropTypes from 'prop-types';
   
 // Screen 
 import Screen from "screens/${container_name}";
@@ -36,6 +36,16 @@ export default function ${capitalizeFirstLetter(container_name)}()
     <Screen />
   )
 }
+
+${capitalizeFirstLetter(container_name)}.propTypes = {
+
+}
+
+
+${capitalizeFirstLetter(container_name)}.defaultProps = {
+
+}
+
 `
   )
 }

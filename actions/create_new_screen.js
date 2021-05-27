@@ -26,7 +26,7 @@ module.exports = function(screen_name)
 function getContent(name)
 {
   let template =  (
-`import React from 'react'
+`import PropTypes from 'prop-types'
 
 // Screen Template styles 
 import styles from "./styles.module.css";
@@ -38,6 +38,17 @@ export default function ${capitalizeFirstLetter(name)}()
     <div>you are at ${name} screen</div>
   )
 }
+
+
+${capitalizeFirstLetter(name)}.propTypes = {
+
+}
+
+
+${capitalizeFirstLetter(name)}.defaultProps = {
+
+}
+
 `
   )
 
