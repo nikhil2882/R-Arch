@@ -73,19 +73,41 @@ import styles from "./${name}Styles.module.css";
 
 export default function ${capitalizeFirstLetter(name)}(props) 
 {
+  const {
+    className,
+    style
+  } = props;
+
+  let combined_class_name = [styles.container, className].join("");
+
+
   return (
-    <div>you are at ${name} Component</div>
+    <div 
+      className={combined_class_name} 
+      style={style}
+    >
+      you are at ${name} Component
+    </div>
   )
 }
 
 
 ${capitalizeFirstLetter(name)}.propTypes = {
-
+  /**
+   * style object to override some styles in
+   * prefer className over styles
+   */
+  style: PropTypes.object,
+  /**
+   * class name to apply on element
+   */
+  className: PropTypes.string
 }
 
 
 ${capitalizeFirstLetter(name)}.defaultProps = {
-
+  className: "",
+  style: {}
 }
 
 `
