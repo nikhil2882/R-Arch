@@ -36,7 +36,7 @@ module.exports = function(name)
 
       fs.mkdirSync(path);
       fs.writeFileSync(`${path}/${name}.js`, getContent(name));
-      fs.writeFileSync(`${path}/${name}Styles.module.css`, "");
+      fs.writeFileSync(`${path}/${name}Styles.module.css`, getCssContent());
       fs.writeFileSync(`${path}/package.json`, getPackageJsonContent(name));
 
     }
@@ -124,6 +124,17 @@ function getPackageJsonContent(name)
       {
         "main": "${name}.js"
       }
+    `
+  )
+}
+
+function getCssContent()
+{
+  return (
+    `.container
+    {
+
+    }
     `
   )
 }
