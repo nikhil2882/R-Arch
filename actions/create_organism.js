@@ -78,7 +78,7 @@ export default function ${capitalizeFirstLetter(name)}(props)
     style
   } = props;
 
-  let combined_class_name = [styles.container, className].join("");
+  let combined_class_name = [styles.container, className].join(" ");
 
 
   return (
