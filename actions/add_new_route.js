@@ -44,7 +44,7 @@ function addRouteInFile(string, container_name)
     component:${capitalizeFirstLetter(container_name)},
     exact:true,
     icon:null,
-    text:"${container_name}"
+    text:"${capitalizeFirstLetter(container_name)}"
   }`
 
   for( let i=0; i<string.length; i++ )
