@@ -24,13 +24,14 @@ module.exports = function(container_name)
 function getContent(container_name)
 {
   return (
-`import PropTypes from 'prop-types';
+`import { memo } from 'react';
+import PropTypes from 'prop-types';
   
 // Screen 
 import Screen from "screens/${container_name}";
 
 
-export default function ${capitalizeFirstLetter(container_name)}() 
+function ${capitalizeFirstLetter(container_name)}() 
 {
   return (
     <Screen />
@@ -46,6 +47,8 @@ ${capitalizeFirstLetter(container_name)}.defaultProps = {
 
 }
 
+
+export default memo(${capitalizeFirstLetter(container_name)})
 `
   )
 }

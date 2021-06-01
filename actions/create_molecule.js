@@ -65,13 +65,14 @@ module.exports = function(name)
 function getContent(name)
 {
   let template =  (
-`import PropTypes from 'prop-types';
+`import { memo } from 'react';
+import PropTypes from 'prop-types';
 
 // Component styles 
 import styles from "./${name}Styles.module.css";
 
 
-export default function ${capitalizeFirstLetter(name)}(props) 
+function ${capitalizeFirstLetter(name)}(props) 
 {
   const {
     className,
@@ -110,6 +111,7 @@ ${capitalizeFirstLetter(name)}.defaultProps = {
   style: {}
 }
 
+export default memo(${capitalizeFirstLetter(name)})
 `
   )
 

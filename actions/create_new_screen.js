@@ -12,7 +12,7 @@ module.exports = function(screen_name)
 
     fs.mkdirSync(path);
     fs.writeFileSync(`${path}/${screen_name}Screen.js`, getContent(screen_name));
-    fs.writeFileSync(`${path}/styles.module.css`, "");
+    fs.writeFileSync(`${path}/${screen_name}Styles.module.css`, getCssContent());
     fs.writeFileSync(`${path}/package.json`, getPackageJsonContent(screen_name));
 
   }
@@ -26,13 +26,14 @@ module.exports = function(screen_name)
 function getContent(name)
 {
   let template =  (
-`import PropTypes from 'prop-types'
+`import { memo } from 'react';
+import PropTypes from 'prop-types'
 
 // Screen Template styles 
 import styles from "./styles.module.css";
 
 
-export default function ${capitalizeFirstLetter(name)}() 
+function ${capitalizeFirstLetter(name)}() 
 {
   return (
     <div>you are at ${name} screen</div>
@@ -49,6 +50,7 @@ ${capitalizeFirstLetter(name)}.defaultProps = {
 
 }
 
+export default memo(${capitalizeFirstLetter(name)})
 `
   )
 
@@ -63,6 +65,17 @@ function getPackageJsonContent(name)
       {
         "main": "${name}Screen.js"
       }
+    `
+  )
+}
+
+function getCssContent()
+{
+  return (
+    `.container
+    {
+
+    }
     `
   )
 }

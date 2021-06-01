@@ -15,6 +15,8 @@ const createAtom = require('./actions/create_atom');
 const createMolecule = require('./actions/create_molecule');
 const createOrganism = require('./actions/create_organism');
 
+const createModel = require('./actions/create_model');
+
 
 
 console.log(
@@ -68,6 +70,12 @@ async function main()
     let screen_name = await inquirer.askForInput("what will be your organism name ?");
 
     createOrganism(screen_name.input);
+  }
+  else if( action_result.action === startup_choices_values.create_new_model)
+  {
+    let model_name = await inquirer.askForInput("what will be your Model name ?");
+
+    createModel(model_name.input);
   }
   else 
   {
