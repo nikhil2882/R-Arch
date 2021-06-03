@@ -30,7 +30,7 @@ function getContent(name)
 import PropTypes from 'prop-types'
 
 // Screen Template styles 
-import styles from "./styles.module.css";
+import styles from "./${name}Styles.module.css";
 
 
 function ${capitalizeFirstLetter(name)}() 
