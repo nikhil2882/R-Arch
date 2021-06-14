@@ -36,7 +36,7 @@ import styles from "./${name}Styles.module.css";
 function ${capitalizeFirstLetter(name)}() 
 {
   return (
-    <div>you are at ${name} screen</div>
+    <div className={styles.container}>you are at ${name} screen</div>
   )
 }
 
@@ -72,10 +72,10 @@ function getPackageJsonContent(name)
 function getCssContent()
 {
   return (
-    `.container
-    {
+`.container
+{
 
-    }
-    `
+}
+`
   )
 }
